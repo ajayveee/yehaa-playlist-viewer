@@ -1,7 +1,8 @@
 each item in data.items
   li
     .li-left-container
-      img(src=item.snippet.thumbnails.default.url)
+      a(href='https://www.youtube.com/playlist?list=' + item.id.playlistId)
+        img(src=item.snippet.thumbnails.default.url)
     .li-right-container
       h3
         a(href='https://www.youtube.com/playlist?list=' + item.id.playlistId)= item.snippet.title

@@ -19,7 +19,11 @@ app.configure(function() {
  
 //routes
 app.get('/', function(req, resp) {
-	http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + encodeURIComponent(playlists[0]) +'&key=' + apiKey , function(res){
+	fetchPlaylists('gapi', encodeURIComponent(playlists[0]), resp);
+	//res.render('gapi', test);
+});
+function fetchPlaylists(renderTarget, plName, resp){
+  http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&type=playlist&q=' + plName +'&key=' + apiKey , function(res){
         var str = '';
         //console.log('STATUS : '+res.statusCode);
        // console.log('HEADERS: ' + JSON.stringify(res.headers));
@@ -29,16 +33,17 @@ app.get('/', function(req, resp) {
          });
 
         res.on('end', function () {
-        	//console.log(str);
-        	x = JSON.parse(str);
-        	//console.log(x);
-            resp.render('gapi', {data : x, playlists : playlists, apiKey: apiKey});
+          //console.log(str);
+          x = JSON.parse(str);
+          //console.log(x);
+            resp.render(renderTarget, {data : x, playlists : playlists, apiKey: apiKey});
         });
 
- 	});
-	//res.render('gapi', test);
+  });
+}
+app.get ('/fpl' , function(req, resp){
+  fetchPlaylists('playlist', encodeURIComponent(req.query.p), resp);
 });
- 
 //have our app listen on port 3000
 app.listen(3000);
 console.log('Your app is now running at: http://127.0.0.1:3000/');

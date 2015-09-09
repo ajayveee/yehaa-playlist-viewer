@@ -1,11 +1,51 @@
-.bodyClass{
+body{
 	margin: 0px auto;
 	width: 800px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 ul#result-list{
 	list-style-type: none;
+	padding: 0px;
+}
+ul#result-list li {
+	height: 90px;
+	margin: 5px 0px 5px 0px;
 }
 ul#result-list li img {
 	width: 120px;
 	height: 90px;
+}
+select#pl-select{
+	margin: 0px auto;
+}
+.li-left-container{
+	width: 120px;
+	/*height: 90px;*/
+	float: left;
+}
+.li-right-container{
+	margin-left: 120px;
+	padding-left: 5px;
+}
+.li-right-container h3{
+	margin: 0px 0px;
+	color: #3372e0;
+}
+.li-right-container div{
+	color: #808080;
+	font-size: 80%;
+}
+.pubDate{
+
+}
+.desc{
+	
+}
+img#loader{
+	margin-left: 5px;
+}
+.select-artist{
+	color: #808080;
+	font-size: 80%;
 }
