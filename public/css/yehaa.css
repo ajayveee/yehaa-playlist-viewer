@@ -1,0 +1,11 @@
+.bodyClass{
+	margin: 0px auto;
+	width: 800px;
+}
+ul#result-list{
+	list-style-type: none;
+}
+ul#result-list li img {
+	width: 120px;
+	height: 90px;
+}
