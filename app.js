@@ -12,14 +12,14 @@ app.set('views', path.join(__dirname, 'views'));
 //add some standard express middleware
 app.configure(function() {
     app.use(express.logger('dev')); /* 'default', 'short', 'tiny', 'dev' */
-    app.use(express.bodyParser());
-    app.use(express.cookieParser());
+   // app.use(express.bodyParser());
+   // app.use(express.cookieParser());
     app.use(express.static('public'));
 });
  
 //routes
 app.get('/', function(req, resp) {
-	fetchPlaylists('gapi', encodeURIComponent(playlists[0]), resp);
+	fetchPlaylists('main', encodeURIComponent(playlists[0]), resp);
 	//res.render('gapi', test);
 });
 function fetchPlaylists(renderTarget, plName, resp){

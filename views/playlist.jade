@@ -6,6 +6,6 @@ each item in data.items
     .li-right-container
       h3
         a(href='https://www.youtube.com/playlist?list=' + item.id.playlistId)= item.snippet.title
-      .by= 'by :'+ (item.snippet.channelTitle.length == 0 ? "N-A" : item.snippet.channelTitle)
+      .by= 'By: '+ (item.snippet.channelTitle.length == 0 ? "N-A" : item.snippet.channelTitle)
       .pubDate= 'Published on: ' + new Date(item.snippet.publishedAt).toISOString().slice(0, 10)
       .desc= item.snippet.description
