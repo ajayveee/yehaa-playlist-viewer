@@ -10,38 +10,30 @@ html(lang="en")
       function handleAPILoaded() {
         //$('#search-button').attr('disabled', false);
       }
-
-      // Search for a specified string.
-      function search() {
-        var q = playlists[$('#pl-select').val()];
-        var request = gapi.client.youtube.search.list({
-          q: q,
-          part: 'snippet'
-        });
-
-        request.execute(function(response) {
-          //var str = JSON.stringify(response.result);
-         // console.log(response);
-         //TODO error handling
-          $("#result-list").empty();
-          response.result.items.forEach(displayPlaylistItem);
-        });
+      function search(){
+         var q = playlists[$('#pl-select').val()];
+         $("#loader").show();
+         $.ajax({
+            url: 'fpl',
+            data: {'p': q},
+            dataType: 'html',
+            error: fetchError,
+            success: fetchSuccess
+         });
       }
-      function displayPlaylistItem(element, index, array){
-        $("#result-list").append("<li><img src="+ element.snippet.thumbnails.default.url+"><span>"+element.snippet.title+"</span></li>");
+      function fetchError(error, status, eThrown){
+        $("#loader").hide();
+        console.log(error);
       }
-      function init(){
-        gapi.client.setApiKey(!{JSON.stringify(apiKey)});
-        gapi.client.load('youtube', 'v3' , handleAPILoaded);
+      function fetchSuccess(data){
+        $("#result-list").empty().html(data);
+        $("#loader").hide();
       }
-    script(src="https://apis.google.com/js/client.js?onload=init")
   body.bodyClass
     select#pl-select(onchange="search()")
       each playlist, index in playlists
         option(value=index)= playlist
+    img#loader(src="/img/ajax-loader.gif", style="display: none;")
     #search-container
       ul#result-list
-        each item in data.items
-          li
-            img(src=item.snippet.thumbnails.default.url)
-            span= item.snippet.title
+        include playlist.jade
