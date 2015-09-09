@@ -23,7 +23,7 @@ app.get('/', function(req, resp) {
 	//res.render('gapi', test);
 });
 function fetchPlaylists(renderTarget, plName, resp){
-  http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&type=playlist&q=' + plName +'&key=' + apiKey , function(res){
+  http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&type=playlist&maxResults=10&q=' + plName +'&key=' + apiKey , function(res){
         var str = '';
         //console.log('STATUS : '+res.statusCode);
        // console.log('HEADERS: ' + JSON.stringify(res.headers));
