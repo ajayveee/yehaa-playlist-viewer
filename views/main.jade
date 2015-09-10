@@ -2,9 +2,12 @@ doctype html
 html(lang="en")
   head
     title Yehaa Playlist Viewer
-    link(href='http://yui.yahooapis.com/pure/0.6.0/pure-min.css', rel='stylesheet')
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css")
+    <!--link(href='http://yui.yahooapis.com/pure/0.6.0/pure-min.css', rel='stylesheet') -->
     link(href='/css/yehaa.css', rel='stylesheet')
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+     <!-- Compiled and minified JavaScript -->
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js")
     script(type='text/javascript').
       var playlists = !{JSON.stringify(playlists)};
       var spanToken;
@@ -21,6 +24,7 @@ html(lang="en")
       }
       function fetchError(error, status, eThrown){
         $("#loader").css('visibility', 'hidden');
+        Materialize.toast("There was an error fetching this playlist!", 4000);
         console.log(error);
       }
       function fetchSuccess(data){
@@ -29,7 +33,7 @@ html(lang="en")
       }
       function fetchMore(){
         var q = playlists[$('#pl-select').val()];
-         $("#loaderNp").css('visibility', 'visible');
+         $("#loader").css('visibility', 'visible');
          spanToken = $("span#tokenSpan");
          $.ajax({
             url: 'np',
@@ -40,23 +44,28 @@ html(lang="en")
          });
       }
       function npFetchError(error, status, eThrown){
-        $("#loaderNp").css('visibility', 'hidden');
+        $("#loader").css('visibility', 'hidden');
+        Materialize.toast("There was an error fetching more playlists!", 4000);
         console.log(error);
       }
       function npFetchSuccess(data){
         spanToken.remove();
         $("#result-list").append(data);
-        $("#loaderNp").css('visibility', 'hidden');
+        $("#loader").css('visibility', 'hidden');
       }
+      $(document).ready(function() {
+         $('#pl-select').material_select();
+      });
   body
-    header
-      h2 Yehaa Playlist Viewer
-      center
-        .select-artist Select an artist from the dropdown below
-        select#pl-select(onchange="search()")
+    header.z-depth-1
+      h5(class="purple darken-4") Yehaa Playlist Viewer
+      .dropdown-container
+        label Select an artist from the dropdown below
+        select#pl-select(onchange="search()", class="browser-default")
           each playlist, index in playlists
             option(value=index)= playlist
-        img#loader(src="/img/ajax-loader.gif", style="visibility: hidden;")
+        #loader.progress(style="visibility: hidden;")
+          .indeterminate
     #search-container
       include playlist.jade
     

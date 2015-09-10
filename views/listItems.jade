@@ -5,8 +5,7 @@ each item in data.items
       a(href='https://www.youtube.com/playlist?list=' + item.id.playlistId)
         img(src=item.snippet.thumbnails.default.url)
     .li-right-container
-      h3
-        a(href='https://www.youtube.com/playlist?list=' + item.id.playlistId)= item.snippet.title
+      a(href='https://www.youtube.com/playlist?list=' + item.id.playlistId)= item.snippet.title
       .by= 'By: '+ (item.snippet.channelTitle.length == 0 ? "N-A" : item.snippet.channelTitle)
       .pubDate= 'Published on: ' + new Date(item.snippet.publishedAt).toISOString().slice(0, 10)
       .desc= item.snippet.description
