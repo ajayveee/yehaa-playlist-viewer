@@ -17,6 +17,13 @@ app.configure(function() {
     app.use(express.static('public'));
 });
  
+var helper = {
+  numberWithCommas: function (x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  }
+}
 //routes
 app.get('/', function(req, resp) {
 	fetchPlaylists('main', encodeURIComponent(playlists[0]), resp);
@@ -36,7 +43,7 @@ function fetchPlaylists(renderTarget, plName, resp){
           //console.log(str);
           x = JSON.parse(str);
           //console.log(x);
-            resp.render(renderTarget, {data : x, playlists : playlists, apiKey: apiKey});
+            resp.render(renderTarget, {data : x, playlists : playlists, apiKey: apiKey, helper: helper});
         });
 
   });
@@ -44,6 +51,8 @@ function fetchPlaylists(renderTarget, plName, resp){
 app.get ('/fpl' , function(req, resp){
   fetchPlaylists('playlist', encodeURIComponent(req.query.p), resp);
 });
+
+
 //have our app listen on port 3000
 app.listen(3000);
 console.log('Your app is now running at: http://127.0.0.1:3000/');

@@ -1,7 +1,9 @@
 body{
 	margin: 0px auto;
 	width: 800px;
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 13px;
+	/*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+	font-family: Roboto,arial,sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 ul#result-list{
@@ -31,11 +33,9 @@ select#pl-select{
 .li-right-container h3{
 	margin: 0px 0px;
 	color: #3372e0;
-	font-size: 90%; 
 }
 .li-right-container div{
 	color: #808080;
-	font-size: 80%;
 }
 .pubDate{
 
@@ -48,7 +48,6 @@ img#loader{
 }
 .select-artist{
 	color: #808080;
-	font-size: 80%;
 }
 header{
 	background-color: #500095;
@@ -58,4 +57,9 @@ header{
 }
 header h2{
 	margin: 0px;
+}
+#result-count-container{
+	color: #808080;
+	border-bottom: 1px solid #f1f1f1;
+	padding: 5px 0px;
 }

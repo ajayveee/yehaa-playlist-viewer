@@ -22,7 +22,7 @@ html(lang="en")
         console.log(error);
       }
       function fetchSuccess(data){
-        $("#result-list").empty().html(data);
+        $("#search-container").empty().html(data);
         $("#loader").css('visibility', 'hidden');
       }
   body
@@ -35,5 +35,6 @@ html(lang="en")
           option(value=index)= playlist
       img#loader(src="/img/ajax-loader.gif", style="visibility: hidden;")
     #search-container
-      ul#result-list
-        include playlist.jade
+      include playlist.jade
+   
+        
