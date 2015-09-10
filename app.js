@@ -12,13 +12,9 @@ var defaultParams = ['part=snippet','type=playlist', 'maxResults=10', 'key=' + a
 
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
-//add some standard express middleware
-app.configure(function() {
-    app.use(express.logger('dev')); /* 'default', 'short', 'tiny', 'dev' */
-   // app.use(express.bodyParser());
-   // app.use(express.cookieParser());
-    app.use(express.static('public'));
-});
+
+app.use(express.static('public'));
+app.use(express.logger('dev')); 
 
 // Variables that can be utilized in jade template 
 var helper = {
