@@ -2,10 +2,10 @@ span#tokenSpan(style='display:none;', pageToken=data.nextPageToken)
 each item in data.items
   li
     .li-left-container
-      a(href='https://www.youtube.com/playlist?list=' + item.id.playlistId)
+      a(href= helper.ytPlaylistURLPrefix + item.id.playlistId)
         img(src=item.snippet.thumbnails.default.url)
     .li-right-container
-      a(href='https://www.youtube.com/playlist?list=' + item.id.playlistId)= item.snippet.title
+      a(href= helper.ytPlaylistURLPrefix + item.id.playlistId)= item.snippet.title
       .by= 'By: '+ (item.snippet.channelTitle.length == 0 ? "N-A" : item.snippet.channelTitle)
       .pubDate= 'Published on: ' + new Date(item.snippet.publishedAt).toISOString().slice(0, 10)
       .desc= item.snippet.description

@@ -9,6 +9,7 @@ var apiKey = 'AIzaSyCYTcIF_zoOf0NHIX0W1j9AkclMBrGnDTg';
 var apiUrl = 'https://www.googleapis.com/youtube/v3/search';
 var defaultParams = ['part=snippet','type=playlist', 'maxResults=10', 'key=' + apiKey];
 
+
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 //add some standard express middleware
@@ -18,14 +19,16 @@ app.configure(function() {
    // app.use(express.cookieParser());
     app.use(express.static('public'));
 });
- 
+
+// Variables that can be utilized in jade template 
 var helper = {
   // helper function that can be utilised in jade for formatting number with commas
   numberWithCommas: function (x) {
     var parts = x.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
-  }
+  },
+  ytPlaylistURLPrefix: 'https://www.youtube.com/playlist?list='
 }
 //routes
 app.get('/', function(req, resp) {
