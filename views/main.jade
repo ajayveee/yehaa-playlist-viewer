@@ -29,6 +29,7 @@ html(lang="en")
       }
       function fetchSuccess(data){
         $("#search-container").empty().html(data);
+        $("body").animate({ scrollTop: 0 }, 'fast');
         $("#loader").css('visibility', 'hidden');
       }
       function fetchMore(){
@@ -54,7 +55,7 @@ html(lang="en")
         $("#loader").css('visibility', 'hidden');
       }
       $(document).ready(function() {
-         $('#pl-select').material_select();
+        $('#pl-select').material_select();
       });
   body
     header.z-depth-1
