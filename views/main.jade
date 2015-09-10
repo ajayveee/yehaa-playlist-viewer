@@ -2,6 +2,7 @@ doctype html
 html(lang="en")
   head
     title Yehaa Playlist Viewer
+    link(href='http://yui.yahooapis.com/pure/0.6.0/pure-min.css', rel='stylesheet')
     link(href='/css/yehaa.css', rel='stylesheet')
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
     script(type='text/javascript').
@@ -50,15 +51,14 @@ html(lang="en")
   body
     header
       h2 Yehaa Playlist Viewer
-    center
-      .select-artist Select an artist from the dropdown below
-      select#pl-select(onchange="search()")
-        each playlist, index in playlists
-          option(value=index)= playlist
-      img#loader(src="/img/ajax-loader.gif", style="visibility: hidden;")
+      center
+        .select-artist Select an artist from the dropdown below
+        select#pl-select(onchange="search()")
+          each playlist, index in playlists
+            option(value=index)= playlist
+        img#loader(src="/img/ajax-loader.gif", style="visibility: hidden;")
     #search-container
       include playlist.jade
-    button#fetch-more(onclick="fetchMore()") Fetch More
-    img#loaderNp(src="/img/ajax-loader.gif", style="visibility: hidden;")
+    
    
         

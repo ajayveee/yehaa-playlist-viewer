@@ -1,3 +1,5 @@
 #result-count-container= "Total " + helper.numberWithCommas(data.pageInfo.totalResults) + " results"
 ul#result-list
   include listItems.jade
+button#fetch-more(class="pure-button pure-button-active", onclick="fetchMore()") Fetch More
+img#loaderNp(src="/img/ajax-loader.gif", style="visibility: hidden;")

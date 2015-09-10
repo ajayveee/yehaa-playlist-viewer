@@ -1,10 +1,18 @@
 body{
 	margin: 0px auto;
-	width: 800px;
+	/*width: 800px;*/
 	font-size: 13px;
 	/*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
 	font-family: Roboto,arial,sans-serif;
 	-webkit-font-smoothing: antialiased;
+}
+#search-container{
+	position: absolute;
+	top: 80px;
+	left: 0px;
+	min-width: 980px;
+	max-width: 1130px;
+	margin: 0px 110px;
 }
 ul#result-list{
 	list-style-type: none;
@@ -50,13 +58,22 @@ img#loader{
 	color: #808080;
 }
 header{
-	background-color: #500095;
-	color: White;
-	padding: 2px 5px;
-	margin: 0px 0px 5px 0px;
+	margin: 0px;
+	position: fixed;
+	z-index: 1999999;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	background-color: White;
+	border-bottom: 1px solid #f1f1f1;
+	padding-bottom: 5px;
+
 }
 header h2{
-	margin: 0px;
+	background-color: #500095;
+	color: White;
+	padding: 5px 5px;
+	margin: 0px 0px 5px 0px;
 }
 #result-count-container{
 	color: #808080;
