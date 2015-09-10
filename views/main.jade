@@ -5,7 +5,8 @@ html(lang="en")
     link(href='/css/yehaa.css', rel='stylesheet')
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
     script(type='text/javascript').
-      var playlists = !{JSON.stringify(playlists)}
+      var playlists = !{JSON.stringify(playlists)};
+      var spanToken;
       function search(){
          var q = playlists[$('#pl-select').val()];
          $("#loader").css('visibility', 'visible');
@@ -25,6 +26,27 @@ html(lang="en")
         $("#search-container").empty().html(data);
         $("#loader").css('visibility', 'hidden');
       }
+      function fetchMore(){
+        var q = playlists[$('#pl-select').val()];
+         $("#loaderNp").css('visibility', 'visible');
+         spanToken = $("span#tokenSpan");
+         $.ajax({
+            url: 'np',
+            data: {'p': q, 'pageToken': spanToken.attr("pageToken")},
+            dataType: 'html',
+            error: npFetchError,
+            success: npFetchSuccess
+         });
+      }
+      function npFetchError(error, status, eThrown){
+        $("#loaderNp").css('visibility', 'hidden');
+        console.log(error);
+      }
+      function npFetchSuccess(data){
+        spanToken.remove();
+        $("#result-list").append(data);
+        $("#loaderNp").css('visibility', 'hidden');
+      }
   body
     header
       h2 Yehaa Playlist Viewer
@@ -36,5 +58,7 @@ html(lang="en")
       img#loader(src="/img/ajax-loader.gif", style="visibility: hidden;")
     #search-container
       include playlist.jade
+    button#fetch-more(onclick="fetchMore()") Fetch More
+    img#loaderNp(src="/img/ajax-loader.gif", style="visibility: hidden;")
    
         
